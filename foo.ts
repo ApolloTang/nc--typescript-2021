@@ -5,6 +5,14 @@ interface myFunc_withMemoizationType {
   }
 }
 
+/**
+ * Given an "input", this function will do some expensive calculation
+ * with an internal function called "expansiveComputation(input)".
+ * The result of the calculation is cached. The next time if the
+ * function is called with the same input the cached result will be used.
+ *
+ * @param {number} param - input of expansiveComputation.
+ */
 const myFunc_withMemoization = function(
   param:number,
 ) {
