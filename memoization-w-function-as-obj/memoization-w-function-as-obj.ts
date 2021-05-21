@@ -6,6 +6,7 @@ interface myFunc_withMemoizationType {
 }
 
 /**
+ *
  * Given an "input", this function will do some expensive calculation
  * with an internal function called "expansiveComputation(input)".
  * The result of the calculation is cached. The next time if the
@@ -13,6 +14,10 @@ interface myFunc_withMemoizationType {
  *
  * @param {number} input - input of expansiveComputation.
  * @return {number} result of expansiveCalcualtion
+ *
+ * Original idea from:
+ *   Stoyan Stefanov, JavaScript Patterns p76, O'Reilly 2020
+ *
  */
 const myFunc_withMemoization = function(
   input:number
