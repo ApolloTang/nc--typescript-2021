@@ -1,5 +1,5 @@
 interface myFunc_withMemoizationType {
-  (a: number): number
+  (input: number): number
   cache: {
     [key:string]: number
   }
@@ -11,27 +11,32 @@ interface myFunc_withMemoizationType {
  * The result of the calculation is cached. The next time if the
  * function is called with the same input the cached result will be used.
  *
- * @param {number} param - input of expansiveComputation.
+ * @param {number} input - input of expansiveComputation.
+ * @return {number} result of expansiveCalcualtion
  */
 const myFunc_withMemoization = function(
-  param:number,
+  input:number
 ) {
-  const key = param.toString()
+  const key = input.toString()
+  const cache = myFunc_withMemoization.cache
 
-  if (!myFunc_withMemoization.cache[param]) {
-    const expansiveComputation = (param:number) =>{
-      console.log(`caculating myFuncWithCache(${param})`)
-      return param
+  if (!cache.hasOwnProperty(key)) {
+    const expansiveComputation = (input:number) =>{
+      console.log(`caculating myFuncWithCache(${input})`)
+      return input
     }
-    const result = expansiveComputation(param)
-    myFunc_withMemoization.cache[param] = result
+
+    const result = expansiveComputation(input)
+    cache[key] = result
     return result
   }
 
-  console.log(`use cached value of myFuncWithCache(${param})`)
-  return myFunc_withMemoization.cache[param]
+  console.log(`use cached value of myFuncWithCache(${input})`)
+  return myFunc_withMemoization.cache[key]
 } as myFunc_withMemoizationType
 myFunc_withMemoization.cache = {} // cache store
 
 console.log(myFunc_withMemoization(1))
 console.log(myFunc_withMemoization(1))
+
+
