@@ -1,3 +1,8 @@
+
+// =========================================================
+// Function as object type syntax, application: Memoization
+// =========================================================
+
 interface myFunc_withMemoizationType {
   (input: number): number
   cache: {
@@ -19,7 +24,7 @@ interface myFunc_withMemoizationType {
  *   Stoyan Stefanov, JavaScript Patterns p76, O'Reilly 2020
  *
  */
-const myFunc_withMemoization = function(
+const myFunc_withMemoization:myFunc_withMemoizationType = function(
   input:number
 ) {
   const key = input.toString()
@@ -38,7 +43,7 @@ const myFunc_withMemoization = function(
 
   console.log(`use cached value of myFuncWithCache(${input})`)
   return myFunc_withMemoization.cache[key]
-} as myFunc_withMemoizationType
+}
 myFunc_withMemoization.cache = {} // cache store
 
 console.log(myFunc_withMemoization(1))
